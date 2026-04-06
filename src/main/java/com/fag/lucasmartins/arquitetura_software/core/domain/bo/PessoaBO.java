@@ -14,7 +14,7 @@ public class PessoaBO {
     private String email;
     private String telefone;
 
-    public Integer getId() {
+    public UUID getId() {
         return id;
     }
 

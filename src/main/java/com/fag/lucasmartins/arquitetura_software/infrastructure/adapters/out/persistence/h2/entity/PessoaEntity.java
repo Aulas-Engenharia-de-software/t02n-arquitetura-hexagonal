@@ -1,17 +1,17 @@
 package com.fag.lucasmartins.arquitetura_software.infrastructure.adapters.out.persistence.h2.entity;
 
-import org.springframework.data.annotation.Id;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.UUID;
 
+@Entity
+@Table(name = "pessoa")
 public class PessoaEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer Id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
     private String nomeCompleto;
     private String cpf;
     private LocalDate dataNascimento;
@@ -19,11 +19,11 @@ public class PessoaEntity {
     private String telefone;
 
     public UUID getId() {
-        return Id;
+        return id;
     }
 
-    public void setId(Integer id) {
-        Id = id;
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public String getNomeCompleto() {
