@@ -10,6 +10,7 @@ import java.util.UUID;
 public class PessoaEntity {
 
     @Id
+    @Column(columnDefinition = "UUID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private String nomeCompleto;

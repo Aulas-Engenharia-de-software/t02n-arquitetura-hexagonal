@@ -3,6 +3,7 @@ package com.fag.lucasmartins.arquitetura_software.infrastructure.adapters.in.res
 import com.fag.lucasmartins.arquitetura_software.application.ports.in.service.PessoaServicePort;
 import com.fag.lucasmartins.arquitetura_software.core.domain.bo.PessoaBO;
 import com.fag.lucasmartins.arquitetura_software.infrastructure.adapters.in.rest.dto.request.PessoaRequestDTO;
+import com.fag.lucasmartins.arquitetura_software.infrastructure.adapters.in.rest.dto.request.PessoaUpdateRequestDTO;
 import com.fag.lucasmartins.arquitetura_software.infrastructure.adapters.in.rest.dto.response.PessoaResponseDTO;
 import com.fag.lucasmartins.arquitetura_software.infrastructure.adapters.in.rest.mapper.PessoaDTOMapper;
 import org.springframework.http.ResponseEntity;
@@ -45,6 +46,19 @@ public class PessoaControllerAdapter {
                 .collect(Collectors.toList());
 
         return ResponseEntity.ok(lista);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<PessoaResponseDTO> atualizar(@PathVariable UUID id, @RequestBody PessoaUpdateRequestDTO dto) {
+        PessoaBO bo = PessoaDTOMapper.toBoUpdate(dto);
+        PessoaBO atualizado = pessoaServicePort.atualizar(id, bo);
+        return ResponseEntity.ok(PessoaDTOMapper.toDto(atualizado));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deletar(@PathVariable UUID id) {
+        pessoaServicePort.deletar(id);
+        return ResponseEntity.ok("Pessoa deletada com sucesso");
     }
 
 }

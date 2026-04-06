@@ -37,4 +37,17 @@ public class PessoaRepositoryPortAdapter implements PessoaRepositoryPort {
     public List<PessoaBO> buscarTodos() {
         return pessoaJpaRepository.findAll().stream().map(PessoaMapper::toBO).collect(Collectors.toList());
     }
+
+    @Override
+    public PessoaBO atualizar(UUID id, PessoaBO pessoaBO) {
+        PessoaEntity entity = PessoaMapper.toEntity(pessoaBO);
+        entity.setId(id);
+        pessoaJpaRepository.save(entity);
+        return PessoaMapper.toBO(entity);
+    }
+
+    @Override
+    public void deletar(UUID id) {
+        pessoaJpaRepository.deleteById(id);
+    }
 }

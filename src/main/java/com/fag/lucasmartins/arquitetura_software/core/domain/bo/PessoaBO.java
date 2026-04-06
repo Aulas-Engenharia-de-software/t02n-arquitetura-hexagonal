@@ -83,4 +83,17 @@ public class PessoaBO {
             throw new DomainException("Telefone deve ter 11 dígitos");
         }
     }
+
+    public void validarDadosUpdate() {
+        if (nomeCompleto != null && nomeCompleto.isBlank()) {
+            throw new DomainException("Nome não pode ser vazio");
+        }
+        if (email != null && !email.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
+            throw new DomainException("Email inválido");
+        }
+        if (telefone != null && !telefone.matches("\\d{11}")) {
+            throw new DomainException("Telefone deve ter 11 dígitos");
+        }
+    }
+
 }

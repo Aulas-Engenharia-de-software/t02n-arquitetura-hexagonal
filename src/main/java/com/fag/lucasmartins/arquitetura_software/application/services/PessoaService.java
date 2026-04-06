@@ -25,12 +25,30 @@ public class PessoaService implements PessoaServicePort {
     }
 
     @Override
-    public PessoaBO buscarPorId(UUID id){
+    public PessoaBO buscarPorId(UUID id) {
         return pessoaRepositoryPort.buscarPorId(id).orElseThrow(() -> new DomainException("Pessoa não encontrada"));
     }
 
     @Override
-    public List<PessoaBO> buscarTodos(){
+    public List<PessoaBO> buscarTodos() {
         return pessoaRepositoryPort.buscarTodos();
+    }
+
+    @Override
+    public PessoaBO atualizar(UUID id, PessoaBO pessoaBO) {
+        PessoaBO existente = pessoaRepositoryPort.buscarPorId(id)
+                .orElseThrow(() -> new DomainException("Pessoa não encontrada"));
+        if (pessoaBO.getNomeCompleto() != null) existente.setNomeCompleto(pessoaBO.getNomeCompleto());
+        if (pessoaBO.getEmail() != null) existente.setEmail(pessoaBO.getEmail());
+        if (pessoaBO.getTelefone() != null) existente.setTelefone(pessoaBO.getTelefone());
+
+        existente.validarDadosUpdate();
+        return pessoaRepositoryPort.atualizar(id, existente);
+    }
+
+    @Override
+    public void deletar(UUID id) {
+        pessoaRepositoryPort.buscarPorId(id).orElseThrow(() -> new DomainException("Pessoa não encontrada"));
+        pessoaRepositoryPort.deletar(id);
     }
 }

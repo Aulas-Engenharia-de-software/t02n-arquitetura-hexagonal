@@ -2,6 +2,7 @@ package com.fag.lucasmartins.arquitetura_software.infrastructure.adapters.in.res
 
 import com.fag.lucasmartins.arquitetura_software.core.domain.bo.PessoaBO;
 import com.fag.lucasmartins.arquitetura_software.infrastructure.adapters.in.rest.dto.request.PessoaRequestDTO;
+import com.fag.lucasmartins.arquitetura_software.infrastructure.adapters.in.rest.dto.request.PessoaUpdateRequestDTO;
 import com.fag.lucasmartins.arquitetura_software.infrastructure.adapters.in.rest.dto.response.PessoaResponseDTO;
 
 public class PessoaDTOMapper {
@@ -15,6 +16,7 @@ public class PessoaDTOMapper {
         bo.setTelefone(dto.getTelefone());
         bo.setEmail(dto.getEmail());
         bo.setDataNascimento(dto.getDataNascimento());
+
         return bo;
     }
 
@@ -28,5 +30,14 @@ public class PessoaDTOMapper {
         dto.setDataNascimento(bo.getDataNascimento());
 
         return dto;
+    }
+
+    public static PessoaBO toBoUpdate(PessoaUpdateRequestDTO dto) {
+        final PessoaBO bo = new PessoaBO();
+        bo.setNomeCompleto(dto.getNomeCompleto());
+        bo.setEmail(dto.getEmail());
+        bo.setTelefone(dto.getTelefone());
+
+        return bo;
     }
 }

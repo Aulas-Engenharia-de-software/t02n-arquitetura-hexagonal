@@ -8,7 +8,12 @@ import java.util.UUID;
 public interface PessoaServicePort {
 
     PessoaBO salvar(PessoaBO pessoaBO);
+
     PessoaBO buscarPorId(UUID id);
 
     List<PessoaBO> buscarTodos();
+
+    PessoaBO atualizar(UUID id, PessoaBO pessoaBO);
+
+    void deletar(UUID id);
 }

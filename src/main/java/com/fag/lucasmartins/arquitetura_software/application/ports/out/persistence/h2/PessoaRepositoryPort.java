@@ -13,4 +13,8 @@ public interface PessoaRepositoryPort {
     Optional<PessoaBO> buscarPorId(UUID id);
 
     List<PessoaBO> buscarTodos();
+
+    PessoaBO atualizar(UUID id, PessoaBO pessoaBO);
+
+    void deletar(UUID id);
 }
