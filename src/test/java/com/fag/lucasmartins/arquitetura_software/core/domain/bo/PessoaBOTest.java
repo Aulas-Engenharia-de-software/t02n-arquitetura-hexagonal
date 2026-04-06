@@ -51,5 +51,33 @@ public class PessoaBOTest {
         bo.setTelefone("4593");
         assertThrows(DomainException.class, bo::validarDados);
     }
+
+    @Test
+    void deveAtualizarComEmailValido() {
+        PessoaBO bo = new PessoaBO();
+        bo.setEmail("novoemail@fag.edu.br");
+        assertDoesNotThrow(bo::validarDadosUpdate);
+    }
+
+    @Test
+    void deveRejeitarEmailInvalidoNoUpdate() {
+        PessoaBO bo = new PessoaBO();
+        bo.setEmail("emailtestes");
+        assertThrows(DomainException.class, bo::validarDadosUpdate);
+    }
+
+    @Test
+    void deveRejeitarTelefoneInvalidoNoUpdate() {
+        PessoaBO bo = new PessoaBO();
+        bo.setTelefone("123");
+        assertThrows(DomainException.class, bo::validarDadosUpdate);
+    }
+
+    @Test
+    void deveAtualizarComTelefoneValido() {
+        PessoaBO bo = new PessoaBO();
+        bo.setTelefone("45999999999");
+        assertDoesNotThrow(bo::validarDadosUpdate);
+    }
 }
 
