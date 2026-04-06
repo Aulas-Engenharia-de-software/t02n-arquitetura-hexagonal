@@ -2,7 +2,8 @@ package com.fag.lucasmartins.arquitetura_software.infrastructure.adapters.in.res
 
 import com.fag.lucasmartins.arquitetura_software.application.ports.in.service.PessoaServicePort;
 import com.fag.lucasmartins.arquitetura_software.core.domain.bo.PessoaBO;
-import com.fag.lucasmartins.arquitetura_software.infrastructure.adapters.in.rest.dto.PessoaDTO;
+import com.fag.lucasmartins.arquitetura_software.infrastructure.adapters.in.rest.dto.request.PessoaRequestDTO;
+import com.fag.lucasmartins.arquitetura_software.infrastructure.adapters.in.rest.dto.response.PessoaResponseDTO;
 import com.fag.lucasmartins.arquitetura_software.infrastructure.adapters.in.rest.mapper.PessoaDTOMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,26 +22,24 @@ public class PessoaControllerAdapter {
     }
 
     @PostMapping
-    public ResponseEntity<PessoaDTO> cadastrarPessoa(@RequestBody PessoaDTO pessoaDTO) {
-        PessoaBO pessoaBO = PessoaDTOMapper.toBo(pessoaDTO);
+    public ResponseEntity<PessoaResponseDTO> cadastrarPessoa(@RequestBody PessoaRequestDTO pessoaRequestDTO) {
+        PessoaBO pessoaBO = PessoaDTOMapper.toBo(pessoaRequestDTO);
 
         PessoaBO pessoaCriadaBo = pessoaServicePort.salvar(pessoaBO);
 
-        PessoaDTO pessoaCriadaDTO = PessoaDTOMapper.toDto(pessoaCriadaBo);
-
-        return ResponseEntity.status(201).body(pessoaCriadaDTO);
+        return ResponseEntity.status(201).body(PessoaDTOMapper.toDto(pessoaCriadaBo));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PessoaDTO> getById(@PathVariable UUID id) {
+    public ResponseEntity<PessoaResponseDTO> getById(@PathVariable UUID id) {
         PessoaBO bo = pessoaServicePort.buscarPorId(id);
 
         return ResponseEntity.ok(PessoaDTOMapper.toDto(bo));
     }
 
     @GetMapping
-    public ResponseEntity<List<PessoaDTO>> getAll() {
-        List<PessoaDTO> lista = pessoaServicePort.buscarTodos()
+    public ResponseEntity<List<PessoaResponseDTO>> getAll() {
+        List<PessoaResponseDTO> lista = pessoaServicePort.buscarTodos()
                 .stream()
                 .map(PessoaDTOMapper::toDto)
                 .collect(Collectors.toList());

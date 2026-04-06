@@ -13,10 +13,10 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Repository
-public class PessoaRepositoryAdapter implements PessoaRepositoryPort {
+public class PessoaRepositoryPortAdapter implements PessoaRepositoryPort {
     private final PessoaJpaRepository pessoaJpaRepository;
 
-    public PessoaRepositoryAdapter(PessoaJpaRepository pessoaJpaRepository) {
+    public PessoaRepositoryPortAdapter(PessoaJpaRepository pessoaJpaRepository) {
         this.pessoaJpaRepository = pessoaJpaRepository;
     }
 

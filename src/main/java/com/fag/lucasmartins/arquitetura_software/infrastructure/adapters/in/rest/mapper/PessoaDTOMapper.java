@@ -1,13 +1,14 @@
 package com.fag.lucasmartins.arquitetura_software.infrastructure.adapters.in.rest.mapper;
 
 import com.fag.lucasmartins.arquitetura_software.core.domain.bo.PessoaBO;
-import com.fag.lucasmartins.arquitetura_software.infrastructure.adapters.in.rest.dto.PessoaDTO;
+import com.fag.lucasmartins.arquitetura_software.infrastructure.adapters.in.rest.dto.request.PessoaRequestDTO;
+import com.fag.lucasmartins.arquitetura_software.infrastructure.adapters.in.rest.dto.response.PessoaResponseDTO;
 
 public class PessoaDTOMapper {
     private PessoaDTOMapper() {
     }
 
-    public static PessoaBO toBo(PessoaDTO dto) {
+    public static PessoaBO toBo(PessoaRequestDTO dto) {
         final PessoaBO bo = new PessoaBO();
         bo.setNomeCompleto(dto.getNomeCompleto());
         bo.setCpf(dto.getCpf());
@@ -17,8 +18,9 @@ public class PessoaDTOMapper {
         return bo;
     }
 
-    public static PessoaDTO toDto(PessoaBO bo) {
-        final PessoaDTO dto = new PessoaDTO();
+    public static PessoaResponseDTO toDto(PessoaBO bo) {
+        final PessoaResponseDTO dto = new PessoaResponseDTO();
+        dto.setId(bo.getId());
         dto.setNomeCompleto(bo.getNomeCompleto());
         dto.setCpf(bo.getCpf());
         dto.setTelefone(bo.getTelefone());
