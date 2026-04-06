@@ -7,6 +7,11 @@ import com.fag.lucasmartins.arquitetura_software.infrastructure.adapters.out.per
 import com.fag.lucasmartins.arquitetura_software.infrastructure.adapters.out.persistence.h2.mapper.PessoaMapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+import java.util.stream.Collectors;
+
 @Repository
 public class PessoaRepositoryAdapter implements PessoaRepositoryPort {
     private final PessoaJpaRepository pessoaJpaRepository;
@@ -21,5 +26,15 @@ public class PessoaRepositoryAdapter implements PessoaRepositoryPort {
 
         pessoaJpaRepository.save(pessoaEntity);
         return PessoaMapper.toBO(pessoaEntity);
+    }
+
+    @Override
+    public Optional<PessoaBO> buscarPorId(UUID id) {
+        return pessoaJpaRepository.findById(id).map(PessoaMapper::toBO);
+    }
+
+    @Override
+    public List<PessoaBO> buscarTodos() {
+        return pessoaJpaRepository.findAll().stream().map(PessoaMapper::toBO).collect(Collectors.toList());
     }
 }
