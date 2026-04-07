@@ -1,4 +1,4 @@
-package com.fag.lucasmartins.arquitetura_software.infrastructure.adapters.out.persistence.h2.repository;
+package com.fag.lucasmartins.arquitetura_software.infrastructure.adapters.out.persistence.h2;
 
 import com.fag.lucasmartins.arquitetura_software.infrastructure.adapters.out.persistence.h2.entity.ProdutoEntity;
 import com.fag.lucasmartins.arquitetura_software.core.domain.bo.ProdutoBO;
