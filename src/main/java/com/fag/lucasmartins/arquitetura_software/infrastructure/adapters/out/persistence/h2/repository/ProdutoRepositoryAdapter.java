@@ -18,10 +18,12 @@ public class ProdutoRepositoryAdapter implements ProdutoRepositoryPort {
 
     @Override
     public ProdutoBO salvar(ProdutoBO produtoBO) {
+        
         ProdutoEntity produtoEntity = ProdutoMapper.toEntity(produtoBO);
-
+        
         produtoJpaRepository.save(produtoEntity);
 
-        return ProdutoMapper.toBO(produtoEntity);
+        
+        return ProdutoMapper.toBo(produtoEntity);
     }
 }

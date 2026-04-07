@@ -5,13 +5,11 @@ import com.fag.lucasmartins.arquitetura_software.core.domain.exceptions.DomainEx
 public class ProdutoBO {
 
     private String nome;
-
     private Integer estoque;
-
     private double preco;
-
     private double precoFinal;
 
+   
     public void validarPrecoProdutoPremium() {
         if (this.nome != null && this.nome.toLowerCase().contains("premium")) {
             if (this.preco < 100.0) {
@@ -20,41 +18,24 @@ public class ProdutoBO {
         }
     }
 
-    public void calcularPrecoFinalPorEstoqueBaixo(){
+    
+    public void calcularPrecoFinalPorEstoqueBaixo() {
+        this.precoFinal = this.preco; 
         if (estoque != null && estoque >= 50) {
-            this.precoFinal = preco - (preco * 0.10);
+            this.precoFinal = preco - (preco * 0.10); 
         }
     }
 
-    public String getNome() {
-        return nome;
-    }
+    
+    public String getNome() { return nome; }
+    public void setNome(String nome) { this.nome = nome; }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+    public Integer getEstoque() { return estoque; }
+    public void setEstoque(Integer estoque) { this.estoque = estoque; }
 
-    public Integer getEstoque() {
-        return estoque;
-    }
+    public double getPreco() { return preco; }
+    public void setPreco(double preco) { this.preco = preco; }
 
-    public void setEstoque(Integer estoque) {
-        this.estoque = estoque;
-    }
-
-    public double getPreco() {
-        return preco;
-    }
-
-    public void setPreco(double preco) {
-        this.preco = preco;
-    }
-
-    public double getPrecoFinal() {
-        return precoFinal;
-    }
-
-    public void setPrecoFinal(double precoFinal) {
-        this.precoFinal = precoFinal;
-    }
+    public double getPrecoFinal() { return precoFinal; }
+    public void setPrecoFinal(double precoFinal) { this.precoFinal = precoFinal; }
 }

@@ -22,12 +22,16 @@ public class ProdutoControllerAdapter {
 
     @PostMapping
     public ResponseEntity<ProdutoDTO> cadastrarProduto(@RequestBody ProdutoDTO produtoDTO) {
+        
         ProdutoBO produtoBO = ProdutoDTOMapper.toBo(produtoDTO);
 
+        
         ProdutoBO produtoCriadoBo = produtoServicePort.salvar(produtoBO);
 
+      
         ProdutoDTO produtoCriadoDTO = ProdutoDTOMapper.toDto(produtoCriadoBo);
 
+       
         return ResponseEntity.status(201).body(produtoCriadoDTO);
     }
 }

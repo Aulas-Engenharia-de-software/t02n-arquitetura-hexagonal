@@ -1,9 +1,10 @@
 package com.fag.lucasmartins.arquitetura_software.application.services;
 
-import com.fag.lucasmartins.arquitetura_software.core.domain.bo.ProdutoBO;
-import com.fag.lucasmartins.arquitetura_software.application.ports.out.persistence.h2.ProdutoRepositoryPort;
-import com.fag.lucasmartins.arquitetura_software.application.ports.in.service.ProdutoServicePort;
 import org.springframework.stereotype.Service;
+
+import com.fag.lucasmartins.arquitetura_software.application.ports.in.service.ProdutoServicePort;
+import com.fag.lucasmartins.arquitetura_software.application.ports.out.persistence.h2.ProdutoRepositoryPort;
+import com.fag.lucasmartins.arquitetura_software.core.domain.bo.ProdutoBO;
 
 @Service
 public class ProdutoService implements ProdutoServicePort {
@@ -16,6 +17,7 @@ public class ProdutoService implements ProdutoServicePort {
 
     @Override
     public ProdutoBO salvar(ProdutoBO produtoBO) {
+       
         produtoBO.validarPrecoProdutoPremium();
         produtoBO.calcularPrecoFinalPorEstoqueBaixo();
 
