@@ -5,25 +5,20 @@ import com.fag.lucasmartins.arquitetura_software.infrastructure.adapters.in.rest
 
 public class ProdutoDTOMapper {
 
-    private ProdutoDTOMapper() {
-    }
-
     public static ProdutoBO toBo(ProdutoDTO dto) {
-        final ProdutoBO bo = new ProdutoBO();
+        ProdutoBO bo = new ProdutoBO();
         bo.setNome(dto.getNome());
-        bo.setEstoque(dto.getEstoque());
         bo.setPreco(dto.getPreco());
-
+        bo.setEstoque(dto.getEstoque());
         return bo;
     }
 
     public static ProdutoDTO toDto(ProdutoBO bo) {
-        final ProdutoDTO dto = new ProdutoDTO();
+        ProdutoDTO dto = new ProdutoDTO();
         dto.setNome(bo.getNome());
         dto.setPreco(bo.getPreco());
         dto.setEstoque(bo.getEstoque());
-
+        
         return dto;
     }
-
 }

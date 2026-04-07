@@ -3,6 +3,6 @@ package com.fag.lucasmartins.arquitetura_software.application.ports.out.persiste
 import com.fag.lucasmartins.arquitetura_software.core.domain.bo.ProdutoBO;
 
 public interface ProdutoRepositoryPort {
-
+    
     ProdutoBO salvar(ProdutoBO produtoBO);
 }
