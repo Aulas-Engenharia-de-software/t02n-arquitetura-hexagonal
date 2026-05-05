@@ -86,7 +86,12 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- Adicione esta dependência para a anotação @SqsListener -->
+		
 	</dependencies>
+
+	
 	
 	<build>
 		<plugins>
