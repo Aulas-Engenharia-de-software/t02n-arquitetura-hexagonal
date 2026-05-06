@@ -21,7 +21,7 @@ public class EntradaEstoqueSqsAdapter {
         this.estoqueServicePort = estoqueServicePort;
     }
 
-    // @SqsListener(value = "${aws.sqs.queue.entrada-estoque}")
+    // @SqsListener("${queue.entrada-estoque}")
     public void receberMensagem(EntradaEstoqueDTO evento) {
         try {
             log.info("Evento de entrada de estoque recebido para o produto {}", evento.getProdutoId());

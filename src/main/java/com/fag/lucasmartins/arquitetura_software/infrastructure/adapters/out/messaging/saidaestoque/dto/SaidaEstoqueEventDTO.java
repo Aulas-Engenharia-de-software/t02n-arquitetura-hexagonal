@@ -1,10 +1,18 @@
-package com.fag.lucasmartins.arquitetura_software.infrastructure.adapters.in.messaging.saidaestoque.dto;
+package com.fag.lucasmartins.arquitetura_software.infrastructure.adapters.out.messaging.saidaestoque.dto;
 
 public class SaidaEstoqueEventDTO {
 
     private Integer produtoId;
 
     private Integer quantidadeAdicionada;
+
+    public SaidaEstoqueEventDTO() {
+    }
+
+    public SaidaEstoqueEventDTO(Integer produtoId, Integer quantidadeAdicionada) {
+        this.produtoId = produtoId;
+        this.quantidadeAdicionada = quantidadeAdicionada;
+    }
 
     public Integer getProdutoId() {
         return produtoId;
